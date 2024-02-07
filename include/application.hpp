@@ -8,6 +8,7 @@
 #include <unordered_map>
 #include <string>
 #include <string_view>
+#include <vector>
 #include <memory>
 
 namespace app
@@ -38,7 +39,7 @@ namespace app
 
             virtual void update(const Seconds elapsed_seconds);
             
-            template <UpdatableWindow WindowType, typename... WindowArgs>
+            template <UpdatableWindow WindowType = Window, typename... WindowArgs>
             void addWindow(
                 const std::string_view window_name,
                 bool show_window,
@@ -48,6 +49,13 @@ namespace app
             // Returns false if window is not found
             bool removeWindow(const std::string_view window_name);
 
+            // Returns false if window is not found
+            bool removeWindow(const std::shared_ptr<Window> window_pointer);
+
+            // Intended to be called inside Window update member function
+            // Returns false if window ptr is not found
+            bool addWindowToRemoveList(const WindowPtr window_pointer);
+
             // Returns nullptr if window is not found
             WindowPtr getWindow(const std::string_view window_name);
 
@@ -55,8 +63,10 @@ namespace app
             void updateWindows(const Seconds elapsed_seconds);
             void clearWindows();
             void displayWindows();
+            void removeWindows();
 
             WindowsMap windows;
+            std::vector<WindowPtr> windows_to_remove;
     };
 
     // Member function definitions
@@ -76,6 +86,7 @@ namespace app
         {
             // Forward window_args to std::make_sharedclea
             windows[std::string{window_name}] = std::make_shared<WindowType>(
+                *this,
                 std::forward<WindowArgs>(window_args)...
             );
 

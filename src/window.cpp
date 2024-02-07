@@ -1,5 +1,7 @@
 #include "../include/window.hpp"
 
+#include "application.hpp"
+
 using namespace app;
 
 using namespace std::string_literals;
@@ -7,6 +9,21 @@ using namespace std::string_literals;
 Window::InterfaceFileNotFound::InterfaceFileNotFound(const std::string_view file_path)
     : runtime_error{"TGUI's Gui file at \""s + std::string{file_path} + "\" not found!\n"}
 {
+}
+
+void Window::update(const Seconds elapsed_seconds)
+{
+    sf::Event event;
+
+    while(pollEvent(event))
+    {
+        handleEvent(event);
+
+        if(event.type == sf::Event::Closed)
+        {
+            application.addWindowToRemoveList(shared_from_this());
+        }
+    }
 }
 
 bool Window::setWidgetToolTip(

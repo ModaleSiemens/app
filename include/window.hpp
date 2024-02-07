@@ -11,7 +11,7 @@
 
 namespace app
 {
-    class Window : public sf::RenderWindow, public tgui::Gui
+    class Window : public sf::RenderWindow, public tgui::Gui, public std::enable_shared_from_this<Window>
     {
         public:
             class InterfaceFileNotFound : public std::runtime_error
@@ -38,6 +38,7 @@ namespace app
 
             template <typename... SFMLWindowArgs>
             Window(
+                Application& application,
                 const std::string_view interface_file_path,
                 SFMLWindowArgs&&... sfml_window_args
             );
@@ -72,6 +73,8 @@ namespace app
             bool removeErrorFromWidget(const std::string_view widget_name);
 
         private:
+            Application& application;
+
             const std::string widget_error_postfix {"_APP_ERROR"};
     };
 
@@ -85,11 +88,13 @@ namespace app
 
     template <typename... SFMLWindowArgs>
     Window::Window(
+        Application& application,
         const std::string_view interface_file_path,
         SFMLWindowArgs&&... sfml_window_args
     )
     :
-        RenderWindow{std::forward<SFMLWindowArgs>(sfml_window_args)...}
+        RenderWindow{std::forward<SFMLWindowArgs>(sfml_window_args)...},
+        application{application}
     {
         if(!std::filesystem::exists(std::string{interface_file_path}))
         {
