@@ -38,7 +38,6 @@ namespace app
 
             virtual void update(const Seconds elapsed_seconds);
             
-            // Add window
             template <UpdatableWindow WindowType, typename... WindowArgs>
             void addWindow(
                 const std::string_view window_name,

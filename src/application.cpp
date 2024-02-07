@@ -29,6 +29,9 @@ void Application::displayWindows()
 {
     for(auto& [window_name, window] : windows)
     {
+        // Draw is also a member function of sf::RenderWindow
+        // must be resolved explicitly
+        window->Gui::draw();
         window->display();
     }
 }
