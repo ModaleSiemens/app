@@ -1,5 +1,4 @@
 src = files(
-    'app.cpp',
-    'window.cpp',
-    'interface.cpp'
+    'application.cpp',
+    'window.cpp'
 )
