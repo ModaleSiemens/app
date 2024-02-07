@@ -1,0 +1,11 @@
+[wrap-git]
+
+directory = tgui
+url       = https://github.com/texus/TGUI.git
+revision  = 1.x
+
+method = cmake
+
+[provide]
+
+tgui = tgui_dep
