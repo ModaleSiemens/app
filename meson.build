@@ -51,3 +51,6 @@ lib_app_dep = declare_dependency(
     link_with          : lib_app,
     dependencies       : deps
 )
+
+# Tests
+subdir('tests')

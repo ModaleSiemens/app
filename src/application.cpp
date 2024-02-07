@@ -53,6 +53,8 @@ bool Application::removeWindow(const std::string_view window_name)
     else 
     {
         windows.erase(std::string{window_name});
+
+        return true;
     }
 }
 
