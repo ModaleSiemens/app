@@ -49,7 +49,7 @@ namespace app
 
             // Returns nullptr if widget is not found or if 
             // widget pointer dynamic cast fails
-            template <typename WidgetType>
+            template <typename WidgetType = tgui::Widget>
             std::shared_ptr<WidgetType> getWidget(const std::string_view widget_name);
 
             // Returns false if widget is not found

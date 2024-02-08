@@ -46,3 +46,58 @@ You can update an application object (and its windows) by calling its virtual `u
 
 ## Window Class
 
+The `Window` class can be used both as a `sf::RenderWindow` and a `tgui::Gui`.
+
+### Instantiating
+
+You can instantiate a `Window` object using its public constructor, which takes some arguments:
+
+- A reference to the parent `Application` object.
+
+- A string pointing to the desired `tgui::Gui` widget file (can be left empty: no file will be loaded). 
+
+- Variadic arguments that are forwarded to the base class `sf::RenderWindow`.
+
+If the GUI file is not found, the constructor throws a `InterfaceFileNotFound` exception.
+
+### Updating 
+
+The `update()` member function of the `Window` class can be overrided, and is automatically called by the window's parent `Application` object. 
+
+### Getting a `tgui::Widget` of a specific type
+
+You can get a widget of a specific type using the member function `getWidget`, which accepts a template argument specifying the desired type of the widget, and a function argument which stands for the widget's name.
+
+The function returns a `std::shared_ptr` to the widget if it's found; otherwise it returns a `nullptr` (`nullptr` is also returned if the widget is found but its dynamic cast to the desired widget type fails).
+
+### Adding ToolTip to Widget
+
+You can add a tooltip to a widget using the member function `setWidgetToolTip()`, which accepts:
+
+- The name of the widget.
+
+- The text (interpreted as TGUI RichText) of the of the tooltip.
+
+- The tooltip text size.
+
+The function returns `false` if the widget is not found.
+
+### Adding Error to a Widget
+
+You can add an error text above a widget using the member function `addErrorToWidget()`:
+
+- The first argument is the name of the widget.
+
+- The second argument is the error rich text.
+
+- The third argument is the error text size.
+
+- The fourth argument is the error text vertical offset from the widget.
+
+The function returns `false` if the widget is not found, and replaces already existing errors already associated with the widget.
+
+### Remove Error from Widget
+
+You remove an error from a Widget using the member function `removeErrorFromWidget()`, which accepts the widget name.
+
+The function returns `false` if the widget is not found, and doesn't do anything if no error is present at the widget.
