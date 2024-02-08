@@ -12,7 +12,7 @@ class PopUp : public app::Window
 
 PopUp::PopUp(app::Application& app, const std::string_view interface_path)
 :
-    Window{app, interface_path, sf::VideoMode(200, 75), "Alert!"}
+    Window{app, interface_path, sf::VideoMode(200, 75), "Alert!", sf::Style::Close}
 {
 }
 
@@ -49,7 +49,7 @@ int main()
             {
                 app.addWindow<PopUp>("popup_1", false, "../../tests/assets/popup1.txt");
             }
-            
+
             app.getWindow("popup_1")->setVisible(true);
         }
     );
