@@ -42,6 +42,8 @@ int main()
     app.addWindow("main_window", true, "../../tests/assets/test1_main.txt", sf::VideoMode(800, 600), "Main Window!");
     app.addWindow<PopUp>("popup_1", false, "../../tests/assets/popup1.txt");
 
+    app.getWindow("main_window")->setWidgetToolTip("label", "<color=green>Hello, this is a tooltip!</color>", 25);
+
     app.getWindow("main_window")->getWidget<tgui::Slider>("slider")->onValueChange(
         [&]()
         {

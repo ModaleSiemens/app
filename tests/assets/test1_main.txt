@@ -1,6 +1,6 @@
 Label.label {
     AutoSize = true;
-    Position = (200, 60);
+    Position = (200, 100);
     Size = (391, 64);
     Text = "Main Interface!";
     TextSize = 50;

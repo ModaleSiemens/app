@@ -14,6 +14,8 @@ The header you should include to use this library is `app.hpp`, which defines it
 
 The `Application` class is the class which manages windows. Windows, as specified by the *concept* `UpdatableWindow`, are class types derived from this library's `Window` class, which in turns derives from SFML `RenderWindow` and TGUI `Gui`.
 
+When a Window is closed, it is by default removed from its `Application` parent object.
+
 ### Instantiating
 
 To instantiate an `Application` object, you can use its default constructor.
