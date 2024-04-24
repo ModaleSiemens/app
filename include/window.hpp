@@ -96,6 +96,8 @@ namespace app
         RenderWindow{std::forward<SFMLWindowArgs>(sfml_window_args)...},
         application{application}
     {
+        setWindow(*this);
+        
         if(interface_file_path != "")
         {
             if(!std::filesystem::exists(std::string{interface_file_path}))
@@ -107,7 +109,5 @@ namespace app
                 loadWidgetsFromFile(std::string{interface_file_path});
             }
         }
-
-        setWindow(*this);
     }
 }
