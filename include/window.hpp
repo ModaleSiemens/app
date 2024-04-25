@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../subprojects/tgui/include/TGUI/TGUI.hpp"
-#include "../subprojects/tgui/include/TGUI/Backend/SFML-Graphics.hpp"
+#include "../../tgui/include/TGUI/TGUI.hpp"
+#include "../../tgui/include/TGUI/Backend/SFML-Graphics.hpp"
 
 #include "types.hpp"
 
