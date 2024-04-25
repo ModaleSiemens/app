@@ -6,7 +6,7 @@ This library is intented to make managing multiple and interacting windows easie
 
 ## Usage
 
-This library exports the dependency `app` via Meson, so that you can add it as dependency in your project.
+This library exports the dependency `lib_app_dep` via Meson, so that you can add it as dependency in your project.
 
 The header you should include to use this library is `app.hpp`, which defines its entities inside the namespace `app`.
 
