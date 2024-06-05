@@ -79,8 +79,8 @@ bool Window::addErrorToWidget(
 
         // If error doesn't exist, create it; otherwise, reuse it
         if(
-            auto widget {getWidget<tgui::RichTextLabel>(error_name)};
-            widget == nullptr
+            auto error_widget {getWidget<tgui::RichTextLabel>(error_name)};
+            error_widget == nullptr
         )
         {
             error_rich_text_label = tgui::RichTextLabel::create(
@@ -91,14 +91,14 @@ bool Window::addErrorToWidget(
 
             error_rich_text_label->setPosition(
                 tgui::bindLeft(widget),
-                tgui::bindTop(widget) + error_text_vertical_offset
+                tgui::bindTop(widget) - error_text_vertical_offset
             );            
 
             add(error_rich_text_label, error_name);
         }
         else 
         {
-            widget->setText(std::string{error_rich_text});
+            error_widget->setText(std::string{error_rich_text});
         }
 
         return true;
