@@ -78,6 +78,8 @@ bool Application::removeWindow(const std::shared_ptr<Window> window_pointer)
     }
     else 
     {
+        window_it->second.close();
+            
         windows.erase(window_it);
 
         return true;
