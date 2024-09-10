@@ -42,7 +42,9 @@ lib_app = library(
     src,
 
     include_directories: inc,
-    dependencies       : deps
+    dependencies       : deps,
+
+    install: true
 )
 
 # Declare dependency
